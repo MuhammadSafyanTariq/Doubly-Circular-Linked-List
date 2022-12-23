@@ -24,7 +24,22 @@ System.out.println(h.data);
   System.out.println("finish");
   }
 
+void reverseTraversal() {
+  Node ptr=this.head;
+  
+  while(ptr.next!=head){
+    ptr=ptr.next;
+  }
+  //ptr=ptr.next;
+  Node last=ptr;
+  while(ptr.prev!=last){
+System. out. println(ptr.data);
+    ptr=ptr.prev;
+  }
+ // ptr=ptr.prev;
+System. out. println(ptr.data);
 
+}
 
 
 void search (int data) {  
@@ -47,18 +62,21 @@ void search (int data) {
   } 
 
 
-  void insertAtBegin( int data) {  
-   Node p=this.head;  
-   Node ptr=new Node();  
-  while(p.next != head) {  
-  p=p.next;  
-  }  
-  p.next=ptr;  
-  
-  p.next=ptr;  
-  ptr.next=this.head;  
-  ptr.data=data;  
-  this. head=ptr;
+  void insertAtBegin( int data) { 
+    
+Node ptr= new Node() ;
+   Node p=this.head;
+    while(p.next!=head)
+{
+p=p.next;
+}
+    
+    p. next=ptr;
+    ptr. prev=p;
+    ptr. next=this.head;
+    ptr. data=data;
+    head. prev=ptr;
+    this. head=ptr;
   }  
     
     
@@ -67,15 +85,20 @@ void search (int data) {
    Node  ptr=new Node();  
   
    Node p=h;  
+     Node q=h.next;
   int i=0;  
-  while(i!=index- 1){  
-  p=p.next;  
+  while(i!=index-1){  
+    p=p.next;  
+    q=q.next;
   i++;  
     
   }  
+     p. next=ptr;
+     ptr. prev=p;
+     ptr. next=q;
+     q. prev=ptr;
   ptr.data=data;  
-  ptr.next=p.next;  
-  p.next=ptr;  
+  
   
   }  
     
@@ -88,23 +111,18 @@ void search (int data) {
   p=p.next;  
   }  
   p.next=ptr;  
+    ptr. prev=p;
   ptr.next=head;  
+    head. prev=ptr;
   ptr.data=data;  
     
     
   }  
     
     
-  void insertAtAdd(  Node  adr,int data) {  
-   Node p=head;  
-   Node ptr=new Node();  
   
-  ptr.next=adr.next;  
-  adr.next=ptr;  
-  ptr.data=data;  
-  }  
     
-    //deletion
+    
 
 
    //deletion  
@@ -113,18 +131,15 @@ void search (int data) {
   void deleteAtFirst() {  
     
    Node  ptr=head;  
-   Node  p=head;  
+   
     
-  while(p.next != head) {  
-  p=p.next;  
+  while(ptr.next != head) {  
+  ptr=ptr.next;  
   }  
-  p.next=ptr.next;  
-    
-    
-    
-  //free(ptr) ;  
-    
-  this. head=p.next;  
+    head=head.next;
+  ptr.next=head;  
+    head.prev=ptr;
+
     
   }  
     
@@ -139,20 +154,20 @@ void search (int data) {
   q=q.next;  
   i++;  
   }  
-  p.next=q.next;  
-  //free(q) ;  
+    q=q.next;
+  p.next=q;  
+    q. prev=p;
+  
   }  
     
   void deleteAtLast() {  
    Node  p=head;  
-   Node  q=head.next;  
-  while(q.next != head) {  
+ 
+  while(p.next != head. prev) {  
   p=p.next;  
-  q=q.next;  
   }  
-  p.next=head;  
-    
- // free(q) ;  
+  p. next=head;
+    head. prev=p;
  } 
   
   
@@ -238,15 +253,15 @@ public class Main {
     
 head.data=1;
 head. next=second;
-head. prev=null;
+head. prev=fourth;
 second.data=2;
 second. prev=head;
 second. next=third;
 third. prev=second;
-third.data=1;
+third.data=3;
 third. next=fourth;
 fourth. prev=third;
-fourth.data=1;
+fourth.data=4;
 fourth. next=head;
 
     //calling methods
@@ -254,33 +269,15 @@ fourth. next=head;
 CircularLinkedList list=new CircularLinkedList(head);
 
     list.traverse() ;
-    list. search (1);
-    list.insertAtBegin(30);
-    list.traverse() ;
-    list.insertAtLast(33);
-    list.traverse() ;
-    list.insertAtIndex(29,2);
-    list.traverse() ;
-    list.insertAtAdd(second,31);
-    list.traverse() ;
-list. deleteAtFirst ();
-    list.traverse() ;
+list. insertAtIndex(30,2);
+    list. insertAtBegin(33);
+    list. insertAtLast(30) ;
+    list. deleteAtFirst() ;
     list. deleteAtLast() ;
-    list.traverse() ;
     list. deleteAtIndex(2) ;
-    list.traverse() ;
+    list. traverse () ;
+   list. sortDecend() ;
+    list. traverse () ;
     list. sortAcend() ;
-list.traverse() ;
-
-list. sortDecend() ;
-list.traverse() ;
-
-
-
-
-
-
-
-    
-	}
-}
+list. traverse () ;
+    list. reverseTraversal() ; }}
