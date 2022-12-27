@@ -6,10 +6,10 @@ class Node{
 	
 }
 
-class CircularLinkedList{
+class DoublyCircularLinkedList{
 Node head;
   
-CircularLinkedList (Node head) {
+DoublyCircularLinkedList (Node head) {
   this. head=head;
 }
 
@@ -266,7 +266,7 @@ fourth. next=head;
 
     //calling methods
 
-CircularLinkedList list=new CircularLinkedList(head);
+DoublyCircularLinkedList list=new DoublyCircularLinkedList(head);
 
     list.traverse() ;
 list. insertAtIndex(30,2);
